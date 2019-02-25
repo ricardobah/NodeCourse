@@ -6,16 +6,7 @@ const mongoose = require ('mongoose');
 const app = express();
 const requireDir = require('require-dir');
 mongoose.connect('mongodb://127.0.0.1:27017/nodeapi', {useNewUrlParser: true})
-requireDir('models')
-const Char = mongoose.model('Character')
-app.get('/',(req,res) => {
-
-        Char.create({
-            name: 'luffy',
-            fruit: 'gomu gomu',
-            filiation: 'pirate'
-
-        })
-});
+requireDir('./src/models')
+app.use('/',require("./src/routes"))
 
 app.listen('3001');
