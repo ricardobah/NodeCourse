@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const Char = mongoose.model('Character');
 module.exports = {
     async index(req,res){
-        const char = await Char.find()
+        const {page = 1} = req.query // page:page == page (short sintaxe)
+        // manda com ?page=x
+        const char = await Char.paginate({}, {page,limit:4})
         return res.json(char)
     },
      async show(req,res){

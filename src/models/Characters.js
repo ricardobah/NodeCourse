@@ -1,4 +1,5 @@
 const mongoose = require ('mongoose');
+const mongoosePaginate = require('mongoose-paginate')
 const CharacterSchema = new mongoose.Schema({
     name:{
         type: String,
@@ -23,6 +24,8 @@ const CharacterSchema = new mongoose.Schema({
         type: String
     }
 });
+
+CharacterSchema.plugin(mongoosePaginate)
 
 mongoose.model('Character', CharacterSchema);
 
